@@ -1,22 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <link rel="stylesheet" href="style.css">
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <title>Demo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"
+  >
 </head>
 
 <body>
+<div id="options-container">
+  <div>
+    <label for="video">Video:</label>
+    <select id="video-select" style="margin-left: 62px; width: 160px">
+      <option value="bbb" selected>BBB</option>
+      <option value="motorbike">motorbike</option>
+      <option value="no-event">no-event</option>
+    </select>
+  </div>
+  <div>
+    <label for="quality">QP:</label>
+    <select id="quality-select" style="margin-left: 82px; width: 200px">
+      <option value="50" selected>50 (Lowest Quality)</option>
+      <option value="40">40</option>
+      <option value="30">30</option>
+      <option value="20">20 (Highest Quality)</option>
+    </select>
+  </div>
+  <div>
+    <label for="compare">Compare with:</label>
+    <select id="comparison-select" style="margin-left: 3px; width: 300px">
+      <option value="original" selected>UnSpliced Original Version</option>
+      <option value="reference">Highest Quality (QP 20)</option>
+    </select>
+  </div>
+</div>
 <div id="videos-container">
-  <video id="video1" width="320" height="240">
-    <source src="video/bbb_qp50_265.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <video id="video2" width="320" height="240">
-    <source src="video/spliced(50).mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+  <div>
+    <label>Auxiliary I-Frame Splicing</label>
+    <video id="video1" width="320" height="240">
+      <source src="videos/spliced/bbb/50.mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div>
+    <label id="video2-text">Original Video</label>
+    <video id="video2" width="320" height="240">
+      <source src="videos/spliced/bbb/50.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
 </div>
 <div class="time">
   <time id="time-elapsed">00:00</time>
@@ -28,9 +67,11 @@
     <input id="seek" value="0" min="0" type="range" step="1" style="padding: 0;">
     <div class="seek-tooltip" id="seek-tooltip">00:00</div>
   </div>
-  <button id="start-stop-btn">Start</button>
-  <button id="restart-btn">Restart</button>
-  <button id="mute-btn">Mute</button>
+  <div id="buttons-container">
+    <button id="start-stop-btn" type="button" class="btn btn-primary">Start</button>
+    <button id="restart-btn" type="button" class="btn btn-secondary">Restart</button>
+    <button id="mute-btn" type="button" class="btn btn-warning">Mute</button>
+  </div>
 </div>
 <script src="script.js"></script>
 </body>

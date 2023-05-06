@@ -4,15 +4,32 @@ body {
     align-items: center;
 }
 
+#options-container {
+    display: flex;
+    flex-direction: column;
+    align-items: self-start;
+    margin-top: 40px;
+}
+
+#options-container select {
+    width: 240px;
+}
+
 #videos-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px;
+}
+
+#videos-container > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #video1, #video2 {
-    width: 50%;
+    width: 99%;
     height: auto;
     margin: 0 10px;
 }
@@ -24,20 +41,11 @@ body {
     margin-top: 20px;
 }
 
-#video-control-panel button, #video-control-panel input {
-    font-size: large;
-    padding: 10px 20px;
-    margin: 0 10px;
-}
-
 #video-control-panel input {
-    width: 50%;
-}
-
-button {
     font-size: large;
     padding: 10px 20px;
     margin: 0 10px;
+    width: 50%;
 }
 
 .video-progress {
@@ -55,6 +63,19 @@ button {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    width: 50%;
+}
+
+#buttons-container {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+#buttons-container > button {
+    width: 80px;
 }
 
 #seek {
