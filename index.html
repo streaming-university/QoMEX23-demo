@@ -2,39 +2,41 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <title>Demo</title>
-   
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Demo</title>
 </head>
 
 <body>
-    <div id="videos-container">
-
-        <video id="video1" width="320" height="240">
-            <source src="video/bbb_qp50_265.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <video id="video2" width="320" height="240">
-            <source src="video/spliced(50).mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-    <div class="time">
-        <time id="time-elapsed">00:00</time>
-        <span> / </span>
-        <time id="duration">00:00</time>
-      </div>
-    <div id="video-control-panel">
-        <div class="video-progress">
-            <input id="seek" value="0" min="0" type="range" step="1" style="padding: 0;">
-            <div class="seek-tooltip" id="seek-tooltip">00:00</div>
-          </div>
-        <button id="start-stop-btn">Start</button>
-        <button id="restart-btn">Restart</button>
-        <button id="mute-btn">Mute</button>
-    </div>
-    <script src="script.js"></script>
+<div id="videos-container">
+  <video id="video1" width="320" height="240">
+    <source src="video/bbb_qp50_265.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <video id="video2" width="320" height="240">
+    <source src="video/spliced(50).mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+<div class="time">
+  <time id="time-elapsed">00:00</time>
+  <span> / </span>
+  <time id="duration">00:00</time>
+</div>
+<div id="video-control-panel">
+  <div class="video-progress">
+    <input id="seek" value="0" min="0" type="range" step="1" style="padding: 0;">
+    <div class="seek-tooltip" id="seek-tooltip">00:00</div>
+  </div>
+  <button id="start-stop-btn">Start</button>
+  <button id="restart-btn">Restart</button>
+  <button id="mute-btn">Mute</button>
+</div>
+<script src="script.js"></script>
 </body>
-
+<footer>
+  <p>Please note that if you encounter issues with the video playback, it may be due to your browser's lack of support
+    for the HEVC codec, which can be resolved by using a browser with native HEVC support or updating your current
+    browser to the latest version. </p>
+</footer>
 </html>
