@@ -156,6 +156,21 @@ video1.addEventListener('timeupdate', updateProgress);
 seek.addEventListener('mousemove', updateSeekTooltip);
 seek.addEventListener('input', skipAhead);
 
+
+video1.addEventListener('readystatechange', function() {
+  // console.log('Ready state updated: ' + videoElement.readyState);
+  if (video1.readyState >= 4 && video2.readyState >= 4) {
+    alert("Both videos are loaded")
+  }
+});
+video2.addEventListener('readystatechange', function() {
+  // console.log('Ready state updated: ' + videoElement.readyState);
+  if (video1.readyState >= 4 && video2.readyState >= 4) {
+    alert("Both videos are loaded")
+  }
+});
+
+
 videoSelect.addEventListener('change', () => {
   video1.src = videos[videoSelect.value].qualities[qualitySelect.value].spliced;
   video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
@@ -178,15 +193,19 @@ comparisonSelect.addEventListener('change', () => {
 });
 
 startBtn.addEventListener('click', () => {
-  if (video1.paused) {
-    video1.play();
-    video2.play();
-    startBtn.textContent = 'Stop';
-  } else {
-    video1.pause();
-    video2.pause();
-    startBtn.textContent = 'Start';
+  if (video1.readyState >= 4 && video2.readyState >= 4){
+    if (video1.paused) {
+      video1.play();
+      video2.play();
+      startBtn.textContent = 'Stop';
+    } else {
+      video1.pause();
+      video2.pause();
+      startBtn.textContent = 'Start';
+    }
   }
+  else
+    alert("Please wait for both videos to finish loading")
 });
 
 reset.addEventListener('click', () => {
