@@ -94,7 +94,7 @@ const videos = {
 
 video1.src = videos[videoSelect.value].qualities[qualitySelect.value].spliced;
 video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
-video2Label.textContent = 'Reference Video: High Quality (QP 20)';
+video2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelect.value})`;
 
 // Event Listeners
 video1.addEventListener('readystatechange', function() {
@@ -116,13 +116,15 @@ videoSelect.addEventListener('change', () => {
 
 qualitySelect.addEventListener('change', () => {
   video1.src = videos[videoSelect.value].qualities[qualitySelect.value].spliced;
-  video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
-  video2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelect.value})`;
+  if (comparisonSelect.value !== 'reference'){
+    video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
+    video2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelect.value})`;
+  }
 });
 
 comparisonSelect.addEventListener('change', () => {
   if (comparisonSelect.value === 'reference') {
-    video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
+    video2.src = videos[videoSelect.value].qualities[20].original;
     video2Label.textContent = 'Reference Video: High Quality (QP 20)';
   } else {
     video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
@@ -131,19 +133,19 @@ comparisonSelect.addEventListener('change', () => {
 });
 
 startBtn.addEventListener('click', () => {
-  if (video1.readyState >= 4 && video2.readyState >= 4){
-    if (video1.paused) {
+  if (video1.paused && video2.paused) {
+    if (video1.readyState >= 4 && video2.readyState >= 4){
       video1.play();
       video2.play();
       startBtn.textContent = 'Stop';
-    } else {
-      video1.pause();
-      video2.pause();
-      startBtn.textContent = 'Start';
-    }
+    } 
+    else
+      alert("Please wait for both videos to finish loading")
+  }else {
+    video1.pause();
+    video2.pause();
+    startBtn.textContent = 'Start';
   }
-  else
-    alert("Please wait for both videos to finish loading")
 });
 
 reset.addEventListener('click', () => {
