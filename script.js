@@ -98,6 +98,14 @@ video1.src = videos[videoSelect.value].qualities[qualitySelect.value].spliced;
 video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
 video2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelect.value})`;
 
+function resetVideos(){
+  video1.currentTime = 0;
+  video2.currentTime = 0;
+  video1.pause();
+  video2.pause();
+  startBtn.textContent = 'Start';
+};
+
 // Event Listeners
 video1.addEventListener('readystatechange', function() {
   if (video1.readyState >= 4 && video2.readyState >= 4) {
@@ -114,6 +122,7 @@ video2.addEventListener('readystatechange', function() {
 videoSelect.addEventListener('change', () => {
   video1.src = videos[videoSelect.value].qualities[qualitySelect.value].spliced;
   video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
+  resetVideos();
 });
 
 qualitySelect.addEventListener('change', () => {
@@ -122,11 +131,7 @@ qualitySelect.addEventListener('change', () => {
     video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
     video2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelect.value})`;
   }
-  video1.currentTime = 0;
-  video2.currentTime = 0;
-  video1.pause();
-  video2.pause();
-  startBtn.textContent = 'Start';
+  resetVideos();
 });
 
 comparisonSelect.addEventListener('change', () => {
@@ -137,11 +142,7 @@ comparisonSelect.addEventListener('change', () => {
     video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
     video2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelect.value})`;
   }
-  video1.currentTime = 0;
-  video2.currentTime = 0;
-  video1.pause();
-  video2.pause();
-  startBtn.textContent = 'Start';
+  resetVideos();
 });
 
 startBtn.addEventListener('click', () => {
@@ -165,6 +166,7 @@ reset.addEventListener('click', () => {
   video2.currentTime = 0;
   video1.play();
   video2.play();
+  startBtn.textContent = 'Stop';
 });
 
 mute.addEventListener('click', () => {
