@@ -101,12 +101,28 @@ video2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelec
 function resetVideos(){
   video1.currentTime = 0;
   video2.currentTime = 0;
+  pause();
+};
+
+function pause(){
   video1.pause();
   video2.pause();
   startBtn.textContent = 'Start';
-};
+}
+
 
 // Event Listeners
+
+video1.addEventListener('stalled', function(){
+    video2.currentTime = video1.currentTime;
+    pause();
+});
+
+video2.addEventListener('stalled', function(){
+  video1.currentTime = video2.currentTime;
+  pause();
+});
+
 video1.addEventListener('readystatechange', function() {
   if (video1.readyState >= 4 && video2.readyState >= 4) {
     alert("Both videos are loaded")
@@ -155,9 +171,7 @@ startBtn.addEventListener('click', () => {
     else
       alert("Please wait for both videos to finish loading")
   }else {
-    video1.pause();
-    video2.pause();
-    startBtn.textContent = 'Start';
+    pause()
   }
 });
 
