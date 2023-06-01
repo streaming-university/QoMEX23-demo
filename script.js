@@ -125,26 +125,26 @@ const videos = {
     qualities: {
       20: {
         //https://drive.google.com/file/d/19cG8frcsRyzNzSobVJ1aGXlOEwpt8FN7/view?usp=share_link
-        spliced: "no-event_qp20.mp4",
-        original: "no-event_qp20.mp4"
+        spliced: "videos/no-event_qp20.mp4",
+        original: "videos/no-event_qp20.mp4"
       },
       30: {
         //https://drive.google.com/file/d/1AuWz4_xvNnNoA-WjuDytLff4YNzPQ4Jd/view?usp=share_link
-        spliced: "no-event_qp30_spliced.mp4",
+        spliced: "videos/no-event_qp30_spliced.mp4",
         //https://drive.google.com/file/d/1fKIW-GgKbYw5st4_dB7Bf-V30Xd5KnrL/view?usp=share_link
-        original: "no-event_qp30.mp4"
+        original: "videos/no-event_qp30.mp4"
       },
       40: {
         //https://drive.google.com/file/d/1msfvrlDe_hr_zeB7jw4FF1r80Qeuh-kr/view?usp=share_link
-        spliced: "no-event_qp40_spliced.mp4",
+        spliced: "videos/no-event_qp40_spliced.mp4",
         //https://drive.google.com/file/d/1BVFysXiC6P-frWTKtJkyk5o2ctBUJQ64/view?usp=share_link
-        original: "no-event_qp40.mp4"
+        original: "videos/no-event_qp40.mp4"
       },
       50: {
         //https://drive.google.com/file/d/1CLDTfAKxZL81CN6SRTehDjT21yG13BON/view?usp=share_link
-        spliced: "no-event_qp50_spliced.mp4",
+        spliced: "videos/no-event_qp50_spliced.mp4",
         //https://drive.google.com/file/d/1x7E5xCCGRzEZrV3RTAx4y4YcrzLYU68o/view?usp=share_link
-        original: "no-event_qp50.mp4"
+        original: "videos/no-event_qp50.mp4"
       }
     }
   },
@@ -152,26 +152,26 @@ const videos = {
     qualities: {
       20: {
         //https://drive.google.com/file/d/1_mu1-BS810uLxzuZrK67d1AQdWM-iVbg/view?usp=share_link
-        spliced: "motorbike_qp20.mp4",
-        original: "motorbike_qp20.mp4"
+        spliced: "videos/motorbike_qp20.mp4",
+        original: "videos/motorbike_qp20.mp4"
       },
       30: {
         //https://drive.google.com/file/d/14Bhswv4_2E41C3BL-S20Si_X-YMbPy9L/view?usp=share_link
-        spliced: "motorbike_qp30_spliced.mp4",
+        spliced: "videos/motorbike_qp30_spliced.mp4",
         //https://drive.google.com/file/d/1MTdOnPBq7cnHr0emo1tNRX0jiN7ODsqf/view?usp=share_link
-        original: "motorbike_qp30.mp4"
+        original: "videos/motorbike_qp30.mp4"
       },
       40: {
         //https://drive.google.com/file/d/1eX_0qphgJQ_3CBH4xVKIqcBxMhd6oKFR/view?usp=share_link
-        spliced: "motorbike_qp40_spliced.mp4",
+        spliced: "videos/motorbike_qp40_spliced.mp4",
         //https://drive.google.com/file/d/1KDzFOMPe2jchQF3N_BqYbaLuMx50tbf0/view?usp=share_link
-        original: "motorbike_qp40.mp4"
+        original: "videos/motorbike_qp40.mp4"
       },
       50: {
         //https://drive.google.com/file/d/1cgmh0xR7qbDhAzP6NHi_P4GPdBZQnYy8/view?usp=share_link
-        spliced: "motorbike_qp50_spliced.mp4",
+        spliced: "videos/motorbike_qp50_spliced.mp4",
         //https://drive.google.com/file/d/1UPJHdmbaXmJ3u9JYSF33VynCIHKkztPK/view?usp=share_link
-        original: "motorbike_qp50.mp4"
+        original: "videos/motorbike_qp50.mp4"
       }
     }
   }
