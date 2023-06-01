@@ -7,7 +7,8 @@ const mute = document.getElementById('mute-btn');
 const videoSelect = document.getElementById('video-select');
 const qualitySelect = document.getElementById('quality-select');
 const comparisonSelect = document.getElementById('comparison-select');
-
+const loadingText1 = document.getElementById('loading-text1');
+const loadingText2 = document.getElementById('loading-text2');
 // //Video links
 // const videos = {
 //   "bbb": {
@@ -196,6 +197,13 @@ function pauseAll(){
 
 
 // Event Listeners
+
+video1.addEventListener('loadeddata', () => {
+  loadingText1.style.display = 'none';
+});
+video2.addEventListener('loadeddata', () => {
+  loadingText2.style.display = 'none';
+});
 
 video1.addEventListener('stalled', function(){
     video2.currentTime = video1.currentTime;
