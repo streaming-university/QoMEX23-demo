@@ -186,6 +186,9 @@ video2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelec
 function resetVideos(){
   video1.currentTime = 0;
   video2.currentTime = 0;
+  
+  loadingText1.style.display = 'initial';
+  loadingText2.style.display = 'initial';
   pauseAll();
 };
 
