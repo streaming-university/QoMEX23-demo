@@ -1,3 +1,1 @@
-# splicing-demo-fe-pure
-
-splicing demo remade
+# Auxiliary I-Frame Splicing - QoMEX'23 Demo
