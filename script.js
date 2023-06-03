@@ -4,40 +4,38 @@ const video2Label = document.getElementById('video2-text');
 const startBtn = document.getElementById('start-stop-btn');
 const reset = document.getElementById('restart-btn');
 const mute = document.getElementById('mute-btn');
-const timeElapsed = document.getElementById('time-elapsed');
-const duration = document.getElementById('duration');
-const seekBar = document.getElementById('seek-bar');
-const seekTooltip = document.getElementById('seek-tooltip');
-const seek = document.getElementById('seek');
 const videoSelect = document.getElementById('video-select');
 const qualitySelect = document.getElementById('quality-select');
 const comparisonSelect = document.getElementById('comparison-select');
+const loadingText1 = document.getElementById('loading-text1');
+const loadingText2 = document.getElementById('loading-text2');
 
+// Video links
 const videos = {
-  bbb: {
+  "bbb": {
     qualities: {
       20: {
         //https://drive.google.com/file/d/1glgLM4dVw7O0ls3QI8R-CL69whL8HjLl/view?usp=share_link
-        spliced: "https://drive.google.com/uc?export=download&id=1glgLM4dVw7O0ls3QI8R-CL69whL8HjLl",
-        original: "https://drive.google.com/uc?export=download&id=1glgLM4dVw7O0ls3QI8R-CL69whL8HjLl"
+        spliced: "videos/bbb_qp20.mp4",
+        original: "videos/bbb_qp20.mp4"
       },
       30: {
         //https://drive.google.com/file/d/1pGRzRtCWblD04Z83Qn2rvdwCnOrRaequ/view?usp=share_link
-        spliced: "https://drive.google.com/uc?export=download&id=1pGRzRtCWblD04Z83Qn2rvdwCnOrRaequ",
+        spliced: "videos/bbb_qp30_spliced.mp4",
         //https://drive.google.com/file/d/1VO2Xq3XpvodYr9jJvbCAOdojQx8bo5na/view?usp=share_link
-        original: "https://drive.google.com/uc?export=download&id=1VO2Xq3XpvodYr9jJvbCAOdojQx8bo5na"
+        original: "videos/bbb_qp30.mp4"
       },
       40: {
         //https://drive.google.com/file/d/1IW304QdZsViOE8uxEQXD6Xp_xageocZE/view?usp=share_link
-        spliced: "https://drive.google.com/uc?export=download&id=1IW304QdZsViOE8uxEQXD6Xp_xageocZE",
+        spliced: "videos/bbb_qp40_spliced.mp4",
         //https://drive.google.com/file/d/1FyMfwRycAaFLgn0j3IgweFTl0f0rVTE6/view?usp=share_link
-        original: "https://drive.google.com/uc?export=download&id=1FyMfwRycAaFLgn0j3IgweFTl0f0rVTE6"
+        original: "videos/bbb_qp40.mp4"
       },
       50: {
         //https://drive.google.com/file/d/1utRTzQ5s5uUwURixQpGa795ZavRv_Xuq/view?usp=share_link
-        spliced: "https://drive.google.com/uc?export=download&id=1utRTzQ5s5uUwURixQpGa795ZavRv_Xuq",
+        spliced: "videos/bbb_qp50_spliced.mp4",
         //https://drive.google.com/file/d/1OemEqxGX_m71WCoYzqv_6TorxDO99lEL/view?usp=share_link
-        original: "https://drive.google.com/uc?export=download&id=1OemEqxGX_m71WCoYzqv_6TorxDO99lEL"
+        original: "videos/bbb_qp50.mp4"
       }
     }
   },
@@ -45,167 +43,155 @@ const videos = {
     qualities: {
       20: {
         //https://drive.google.com/file/d/19cG8frcsRyzNzSobVJ1aGXlOEwpt8FN7/view?usp=share_link
-        spliced: "https://drive.google.com/uc?export=download&id=19cG8frcsRyzNzSobVJ1aGXlOEwpt8FN7",
-        original: "https://drive.google.com/uc?export=download&id=19cG8frcsRyzNzSobVJ1aGXlOEwpt8FN7"
+        spliced: "videos/no-event_qp20.mp4",
+        original: "videos/no-event_qp20.mp4"
       },
       30: {
         //https://drive.google.com/file/d/1AuWz4_xvNnNoA-WjuDytLff4YNzPQ4Jd/view?usp=share_link
-        spliced: "https://drive.google.com/uc?export=download&id=1AuWz4_xvNnNoA-WjuDytLff4YNzPQ4Jd",
+        spliced: "videos/no-event_qp30_spliced.mp4",
         //https://drive.google.com/file/d/1fKIW-GgKbYw5st4_dB7Bf-V30Xd5KnrL/view?usp=share_link
-        original: "https://drive.google.com/uc?export=download&id=1fKIW-GgKbYw5st4_dB7Bf-V30Xd5KnrL"
+        original: "videos/no-event_qp30.mp4"
       },
       40: {
         //https://drive.google.com/file/d/1msfvrlDe_hr_zeB7jw4FF1r80Qeuh-kr/view?usp=share_link
-        spliced: "https://drive.google.com/uc?export=download&id=1msfvrlDe_hr_zeB7jw4FF1r80Qeuh-kr",
+        spliced: "videos/no-event_qp40_spliced.mp4",
         //https://drive.google.com/file/d/1BVFysXiC6P-frWTKtJkyk5o2ctBUJQ64/view?usp=share_link
-        original: "https://drive.google.com/uc?export=download&id=1BVFysXiC6P-frWTKtJkyk5o2ctBUJQ64"
+        original: "videos/no-event_qp40.mp4"
       },
       50: {
         //https://drive.google.com/file/d/1CLDTfAKxZL81CN6SRTehDjT21yG13BON/view?usp=share_link
-        spliced: "https://drive.google.com/uc?export=download&id=1CLDTfAKxZL81CN6SRTehDjT21yG13BON",
+        spliced: "videos/no-event_qp50_spliced.mp4",
         //https://drive.google.com/file/d/1x7E5xCCGRzEZrV3RTAx4y4YcrzLYU68o/view?usp=share_link
-        original: "https://drive.google.com/uc?export=download&id=1x7E5xCCGRzEZrV3RTAx4y4YcrzLYU68o"
+        original: "videos/no-event_qp50.mp4"
       }
     }
   },
-  motorbike: {
+  "motorbike": {
     qualities: {
       20: {
         //https://drive.google.com/file/d/1_mu1-BS810uLxzuZrK67d1AQdWM-iVbg/view?usp=share_link
-        spliced: "https://drive.google.com/uc?export=download&id=1_mu1-BS810uLxzuZrK67d1AQdWM-iVbg",
-        original: "https://drive.google.com/uc?export=download&id=1_mu1-BS810uLxzuZrK67d1AQdWM-iVbg"
+        spliced: "videos/motorbike_qp20.mp4",
+        original: "videos/motorbike_qp20.mp4"
       },
       30: {
         //https://drive.google.com/file/d/14Bhswv4_2E41C3BL-S20Si_X-YMbPy9L/view?usp=share_link
-        spliced: "https://drive.google.com/uc?export=download&id=14Bhswv4_2E41C3BL-S20Si_X-YMbPy9L",
+        spliced: "videos/motorbike_qp30_spliced.mp4",
         //https://drive.google.com/file/d/1MTdOnPBq7cnHr0emo1tNRX0jiN7ODsqf/view?usp=share_link
-        original: "https://drive.google.com/uc?export=download&id=1MTdOnPBq7cnHr0emo1tNRX0jiN7ODsqf"
+        original: "videos/motorbike_qp30.mp4"
       },
       40: {
         //https://drive.google.com/file/d/1eX_0qphgJQ_3CBH4xVKIqcBxMhd6oKFR/view?usp=share_link
-        spliced: "https://drive.google.com/uc?export=download&id=1eX_0qphgJQ_3CBH4xVKIqcBxMhd6oKFR",
+        spliced: "videos/motorbike_qp40_spliced.mp4",
         //https://drive.google.com/file/d/1KDzFOMPe2jchQF3N_BqYbaLuMx50tbf0/view?usp=share_link
-        original: "https://drive.google.com/uc?export=download&id=1KDzFOMPe2jchQF3N_BqYbaLuMx50tbf0"
+        original: "videos/motorbike_qp40.mp4"
       },
       50: {
         //https://drive.google.com/file/d/1cgmh0xR7qbDhAzP6NHi_P4GPdBZQnYy8/view?usp=share_link
-        spliced: "https://drive.google.com/uc?export=download&id=1cgmh0xR7qbDhAzP6NHi_P4GPdBZQnYy8",
+        spliced: "videos/motorbike_qp50_spliced.mp4",
         //https://drive.google.com/file/d/1UPJHdmbaXmJ3u9JYSF33VynCIHKkztPK/view?usp=share_link
-        original: "https://drive.google.com/uc?export=download&id=1UPJHdmbaXmJ3u9JYSF33VynCIHKkztPK"
+        original: "videos/motorbike_qp50.mp4"
       }
     }
   }
 };
 
-
-
-// video1.src = `./videos/spliced/${videoSelect.value}/${qualitySelect.value}.mp4`;
-// video2.src = `./videos/original/${videoSelect.value}/20.mp4`;
-
 video1.src = videos[videoSelect.value].qualities[qualitySelect.value].spliced;
 video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
-video2Label.textContent = 'Reference Video: High Quality (QP 20)';
+video2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelect.value})`;
 
-// Helpers
-const formatTime = (timeInSeconds) => ({
-  minutes: Math.floor(timeInSeconds / 60), seconds: timeInSeconds % 60
-});
+function resetVideos(){
+  // reset audio states
+  video1.muted = false;
+  video2.muted = false;
+  mute.textContent = 'Mute';
 
-const str_pad_left = (string, pad, length) => (new Array(length + 1).join(pad) + string).slice(-length);
+  // reset playback states
+  video1.pause();
+  video2.pause();
+  video1.currentTime = 0;
+  video2.currentTime = 0;
+  startBtn.textContent = 'Start';
+  
+  loadingText1.style.display = 'auto';
+  loadingText2.style.display = 'auto';
+}
 
-// Controllers
-const initializeVideo = () => {
-  const videoDuration = Math.round(video1.duration);
-  seek.setAttribute('max', videoDuration);
-  const time = formatTime(videoDuration);
-  duration.innerText = `${time.minutes}:${time.seconds}`;
-  duration.setAttribute('datetime', `${time.minutes}m ${time.seconds}s`);
-};
-
-const updateProgress = () => {
-  seek.value = Math.floor(video1.currentTime);
-};
-
-const updateTimeElapsed = () => {
-  const time = formatTime(Math.round(video1.currentTime));
-  timeElapsed.innerText = str_pad_left(time.minutes, '0', 2) + ':' + str_pad_left(time.seconds, '0', 2);
-  timeElapsed.setAttribute('datetime', `${time.minutes}m ${time.seconds}s`);
-};
-
-const updateSeekTooltip = (event) => {
-  const skipTo = Math.round((event.offsetX / event.target.clientWidth) * parseInt(event.target.getAttribute('max'), 10));
-  seek.setAttribute('data-seek', skipTo);
-  const t = formatTime(skipTo);
-  seekTooltip.textContent = `${t.minutes}:${t.seconds}`;
-  const rect = video1.getBoundingClientRect();
-  seekTooltip.style.left = `${event.pageX - rect.left}px`;
-};
-
-const skipAhead = (event) => {
-  const skipTo = event.target.dataset.seek ? event.target.dataset.seek : event.target.value;
-  video1.currentTime = skipTo;
-  video2.currentTime = skipTo;
-  seek.value = skipTo;
-};
-
-if (video1.readyState >= video1.HAVE_FUTURE_DATA) initializeVideo(); else video1.addEventListener('canplay', initializeVideo);
+function pauseAll(){
+  video1.pause();
+  video2.pause();
+  startBtn.textContent = 'Start';
+}
 
 // Event Listeners
-video1.addEventListener('timeupdate', updateTimeElapsed);
-video1.addEventListener('timeupdate', updateProgress);
-seek.addEventListener('mousemove', updateSeekTooltip);
-seek.addEventListener('input', skipAhead);
 
+video1.addEventListener('loadeddata', () => {
+  loadingText1.style.display = 'none';
+});
+
+video2.addEventListener('loadeddata', () => {
+  loadingText2.style.display = 'none';
+});
+
+video1.addEventListener('stalled', function(){
+    video2.currentTime = video1.currentTime;
+    pauseAll();
+});
+
+video2.addEventListener('stalled', function(){
+  video1.currentTime = video2.currentTime;
+  pauseAll();
+});
 
 video1.addEventListener('readystatechange', function() {
-  // console.log('Ready state updated: ' + videoElement.readyState);
-  if (video1.readyState >= 4 && video2.readyState >= 4) {
-    alert("Both videos are loaded")
-  }
-});
-video2.addEventListener('readystatechange', function() {
-  // console.log('Ready state updated: ' + videoElement.readyState);
   if (video1.readyState >= 4 && video2.readyState >= 4) {
     alert("Both videos are loaded")
   }
 });
 
+video2.addEventListener('readystatechange', function() {
+  if (video1.readyState >= 4 && video2.readyState >= 4) {
+    alert("Both videos are loaded")
+  }
+});
 
 videoSelect.addEventListener('change', () => {
   video1.src = videos[videoSelect.value].qualities[qualitySelect.value].spliced;
   video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
+  resetVideos();
 });
 
 qualitySelect.addEventListener('change', () => {
   video1.src = videos[videoSelect.value].qualities[qualitySelect.value].spliced;
-  video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
-  video2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelect.value})`;
+  if (comparisonSelect.value !== 'reference'){
+    video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
+    video2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelect.value})`;
+  }
+  resetVideos();
 });
 
 comparisonSelect.addEventListener('change', () => {
   if (comparisonSelect.value === 'reference') {
-    video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
+    video2.src = videos[videoSelect.value].qualities[20].original;
     video2Label.textContent = 'Reference Video: High Quality (QP 20)';
   } else {
     video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
     video2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelect.value})`;
   }
+  resetVideos();
 });
 
-startBtn.addEventListener('click', () => {
-  if (video1.readyState >= 4 && video2.readyState >= 4){
-    if (video1.paused) {
+startBtn.addEventListener('click', async () => {
+  if (video1.paused && video2.paused) {
+    if (video1.readyState >= 4 && video2.readyState >= 4){
       video1.play();
       video2.play();
       startBtn.textContent = 'Stop';
-    } else {
-      video1.pause();
-      video2.pause();
-      startBtn.textContent = 'Start';
-    }
+    } 
+    else
+      alert("Please wait for both videos to finish loading")
+  }else {
+    pauseAll()
   }
-  else
-    alert("Please wait for both videos to finish loading")
 });
 
 reset.addEventListener('click', () => {
@@ -213,10 +199,11 @@ reset.addEventListener('click', () => {
   video2.currentTime = 0;
   video1.play();
   video2.play();
+  startBtn.textContent = 'Stop';
 });
 
 mute.addEventListener('click', () => {
   video1.muted = !video1.muted;
   video2.muted = !video2.muted;
-  mute.textContent = video1.muted ? 'Unmute' : ' Mute ';
+  mute.textContent = video1.muted ? 'Unmute' : 'Mute';
 });
