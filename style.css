@@ -81,6 +81,7 @@ table {
     border-collapse: collapse;
     font-family: Arial, sans-serif;
     border: 1px solid #ddd;
+    margin-bottom: 24px;
 }
 
 th, td {
