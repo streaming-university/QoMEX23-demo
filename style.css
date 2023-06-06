@@ -50,15 +50,15 @@ html, body {
 #video-control-panel {
     display: flex;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
     flex-wrap: wrap;
     margin: 32px 0;
 }
 
-#video-control-panel > button {
-    width: 80px;
-    margin: 0 4px;
+#video-control-panel > div > button {
+    width: 96px;
+    margin: 0 28px;
 }
 
 footer {
@@ -95,4 +95,24 @@ th {
 
 tr:nth-child(even) {
     background-color: #f0f0f0;
+}
+
+#custom-seekbar {
+    height: 10px;
+    margin-bottom: 10px;
+    outline: thin solid orange;
+    overflow: hidden;
+    position: relative;
+    width: 400px;
+    border-radius: 16px;
+}
+
+#custom-seekbar span {
+    background-color: orange;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 10px;
+    width: 0;
+    border-radius: 16px;
 }
