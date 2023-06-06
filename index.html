@@ -24,7 +24,7 @@
             <a href="https://caniuse.com/hevc" target="_blank" rel="noopener">Check here</a> for more information.
         </p>
         <div id="options-container">
-            <div style="margin-bottom: 8px">
+            <div style="margin-bottom: 4px">
                 <label for="video">Video:</label>
                 <select id="video-select" style="margin-left: 62px; width: 160px">
                     <option value="bbb" selected>BBB</option>
@@ -32,7 +32,7 @@
                     <option value="no-event">no-event</option>
                 </select>
             </div>
-            <div style="margin-bottom: 8px">
+            <div style="margin-bottom: 4px">
                 <label for="quality">QP:</label>
                 <select id="quality-select" style="margin-left: 82px; width: 200px">
                     <option value="50" selected>50 (Lowest Quality)</option>
@@ -48,6 +48,8 @@
                 </select>
             </div>
         </div>
+
+        <h2>Videos</h2>
         <div id="videos-container">
             <div>
                 <label>Auxiliary I-Frame Splicing</label>
@@ -74,7 +76,7 @@
                 <button id="mute-btn" type="button" class="btn btn-warning mr-4">Mute</button>
             </div>
         </div>
-        <div>
+        <div id="results-table">
             <table>
                 <tr style="border: 1px solid #ddd;">
                     <th>Content</th>
@@ -151,6 +153,22 @@
                     <td>38.52</td>
                 </tr>
             </table>
+        </div>
+
+        <h2>Frames</h2>
+        <div id="frames-container">
+            <div>
+                <label id="frame1-text">Auxiliary I-Frame Splicing</label>
+                <img id="frame1"/>
+            </div>
+            <div>
+                <label id="frame2-text">Original Video</label>
+                <img id="frame2"/>
+            </div>
+        </div>
+        <div id="frame-control-panel">
+            <button id="previous-btn" type="button" class="btn btn-secondary mr-4" disabled>Previous</button>
+            <button id="next-btn" type="button" class="btn btn-primary mr-4">Next</button>
         </div>
     </div>
     <footer>

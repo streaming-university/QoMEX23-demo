@@ -9,14 +9,18 @@ const qualitySelect = document.getElementById('quality-select');
 const comparisonSelect = document.getElementById('comparison-select');
 const loadingText1 = document.getElementById('loading-text1');
 const loadingText2 = document.getElementById('loading-text2');
+const frame1 = document.getElementById('frame1');
+const frame2 = document.getElementById('frame2');
+const previous = document.getElementById('previous-btn');
+const next = document.getElementById('next-btn');
+const frame2Label = document.getElementById('frame2-text');
 
 // Video links
-const videos = {
+const VIDEOS = {
     "bbb": {
         qualities: {
             20: {
                 //https://drive.google.com/file/d/1glgLM4dVw7O0ls3QI8R-CL69whL8HjLl/view?usp=share_link
-                spliced: "videos/bbb_qp20.mp4",
                 original: "videos/bbb_qp20.mp4"
             },
             30: {
@@ -43,7 +47,6 @@ const videos = {
         qualities: {
             20: {
                 //https://drive.google.com/file/d/19cG8frcsRyzNzSobVJ1aGXlOEwpt8FN7/view?usp=share_link
-                spliced: "videos/no-event_qp20.mp4",
                 original: "videos/no-event_qp20.mp4"
             },
             30: {
@@ -70,7 +73,6 @@ const videos = {
         qualities: {
             20: {
                 //https://drive.google.com/file/d/1_mu1-BS810uLxzuZrK67d1AQdWM-iVbg/view?usp=share_link
-                spliced: "videos/motorbike_qp20.mp4",
                 original: "videos/motorbike_qp20.mp4"
             },
             30: {
@@ -95,13 +97,83 @@ const videos = {
     }
 };
 
-video1.src = videos[videoSelect.value].qualities[qualitySelect.value].spliced;
-video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
+// Frame links
+const FRAMES = {
+    "bbb": {
+        qualities: {
+            20: {
+                original: "frames/bbb_20/"
+            },
+            30: {
+                spliced: "frames/bbb_30_spliced/",
+                original: "frames/bbb_30/"
+            },
+            40: {
+                spliced: "frames/bbb_40_spliced/",
+                original: "frames/bbb_40/"
+            },
+            50: {
+                spliced: "frames/bbb_50_spliced/",
+                original: "frames/bbb_50/"
+            }
+        }
+    },
+    "no-event": {
+        qualities: {
+            20: {
+                original: "frames/no-event_20/"
+            },
+            30: {
+                spliced: "frames/no-event_30_spliced/",
+                original: "frames/no-event_30/"
+            },
+            40: {
+                spliced: "frames/no-event_40_spliced/",
+                original: "frames/no-event_40/"
+            },
+            50: {
+                spliced: "frames/no-event_50_spliced/",
+                original: "frames/no-event_50/"
+            }
+        }
+    },
+    "motorbike": {
+        qualities: {
+            20: {
+                original: "frames/motorbike_20/"
+            },
+            30: {
+                spliced: "frames/motorbike_30_spliced/",
+                original: "frames/motorbike_30/"
+            },
+            40: {
+                spliced: "frames/motorbike_40_spliced/",
+                original: "frames/motorbike_40/"
+            },
+            50: {
+                spliced: "frames/motorbike_50_spliced/",
+                original: "frames/motorbike_50/"
+            }
+        }
+    }
+};
+
+const FRAME_START = 0.1;
+let CURRENT_FRAME = FRAME_START;
+const FRAME_INCREMENT = 1.0;
+let DURATION = videoSelect.value === "motorbike" ? 20.0 : 30.0;
+
+video1.src = VIDEOS[videoSelect.value].qualities[qualitySelect.value].spliced;
+video2.src = VIDEOS[videoSelect.value].qualities[qualitySelect.value].original;
 video2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelect.value})`;
+
+frame1.src = `${FRAMES[videoSelect.value].qualities[qualitySelect.value].spliced}/${CURRENT_FRAME}.png`;
+frame2.src = `${FRAMES[videoSelect.value].qualities[qualitySelect.value].original}/${CURRENT_FRAME}.png`;
+frame2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelect.value})`;
 
 // Helpers
 
-const resetVideos = () => {
+const resetStates = () => {
     // reset audio states
     video1.muted = false;
     video2.muted = false;
@@ -116,12 +188,26 @@ const resetVideos = () => {
 
     loadingText1.style.display = 'auto';
     loadingText2.style.display = 'auto';
+
+    // reset frame states
+    CURRENT_FRAME = FRAME_START;
+    DURATION = videoSelect.value === "motorbike" ? 20.0 : 30.0;
 }
 
 const pauseAll = () => {
     video1.pause();
     video2.pause();
     startBtn.textContent = 'Start';
+}
+
+const updateVideo = () => {
+    video1.src = VIDEOS[videoSelect.value].qualities[qualitySelect.value].spliced;
+    video2.src = VIDEOS[videoSelect.value].qualities[qualitySelect.value].original;
+}
+
+const updateFrame = (frame) => {
+    frame1.src = `${FRAMES[videoSelect.value].qualities[qualitySelect.value].spliced}/${frame}.png`;
+    frame2.src = `${FRAMES[videoSelect.value].qualities[qualitySelect.value].original}/${frame}.png`;
 }
 
 // Event Listeners
@@ -165,29 +251,39 @@ video2.addEventListener('ended', () => {
 });
 
 videoSelect.addEventListener('change', () => {
-    video1.src = videos[videoSelect.value].qualities[qualitySelect.value].spliced;
-    video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
-    resetVideos();
+    resetStates();
+    updateFrame(CURRENT_FRAME);
+    updateVideo();
 });
 
 qualitySelect.addEventListener('change', () => {
-    video1.src = videos[videoSelect.value].qualities[qualitySelect.value].spliced;
+    resetStates();
+    video1.src = VIDEOS[videoSelect.value].qualities[qualitySelect.value].spliced;
+    frame1.src = `${FRAMES[videoSelect.value].qualities[qualitySelect.value].spliced}/${CURRENT_FRAME}.png`;
     if (comparisonSelect.value !== 'reference') {
-        video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
+        video2.src = VIDEOS[videoSelect.value].qualities[qualitySelect.value].original;
         video2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelect.value})`;
+
+        frame2.src = `${FRAMES[videoSelect.value].qualities[qualitySelect.value].original}/${CURRENT_FRAME}.png`;
+        frame2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelect.value})`;
     }
-    resetVideos();
 });
 
 comparisonSelect.addEventListener('change', () => {
+    resetStates();
     if (comparisonSelect.value === 'reference') {
-        video2.src = videos[videoSelect.value].qualities[20].original;
+        video2.src = VIDEOS[videoSelect.value].qualities[20].original;
         video2Label.textContent = 'Reference Video: High Quality (QP 20)';
+
+        frame2.src = `${FRAMES[videoSelect.value].qualities[20].original}/${CURRENT_FRAME}.png`;
+        frame2Label.textContent = 'Reference Video: High Quality (QP 20)';
     } else {
-        video2.src = videos[videoSelect.value].qualities[qualitySelect.value].original;
+        video2.src = VIDEOS[videoSelect.value].qualities[qualitySelect.value].original;
         video2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelect.value})`;
+
+        frame2.src = `${FRAMES[videoSelect.value].qualities[qualitySelect.value].original}/${CURRENT_FRAME}.png`;
+        frame2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelect.value})`;
     }
-    resetVideos();
 });
 
 startBtn.addEventListener('click', async () => {
@@ -215,6 +311,24 @@ mute.addEventListener('click', () => {
     video1.muted = !video1.muted;
     video2.muted = !video2.muted;
     mute.textContent = video1.muted ? 'Unmute' : 'Mute';
+});
+
+previous.addEventListener('click', () => {
+    CURRENT_FRAME = Math.round((CURRENT_FRAME - FRAME_INCREMENT) * 10) / 10;
+    if (CURRENT_FRAME < 1) {
+        previous.disabled = true;
+    }
+    next.disabled = false;
+    updateFrame(CURRENT_FRAME);
+});
+
+next.addEventListener('click', () => {
+    CURRENT_FRAME = Math.round((CURRENT_FRAME + FRAME_INCREMENT) * 10) / 10;
+    if (CURRENT_FRAME > DURATION - 1) {
+        next.disabled = true;
+    }
+    previous.disabled = false;
+    updateFrame(CURRENT_FRAME);
 });
 
 video1.ontimeupdate = function(){
