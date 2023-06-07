@@ -158,10 +158,15 @@ const FRAMES = {
     }
 };
 
-const FRAME_START = 0.1;
+const DURATIONS = {
+    "bbb": 30,
+    "no-event": 25,
+    "motorbike": 20
+}
+
+const FRAME_START = 1;
 let CURRENT_FRAME = FRAME_START;
-const FRAME_INCREMENT = 1.0;
-let DURATION = videoSelect.value === "motorbike" ? 20.0 : 30.0;
+let DURATION = DURATIONS [videoSelect.value];
 
 video1.src = VIDEOS[videoSelect.value].qualities[qualitySelect.value].spliced;
 video2.src = VIDEOS[videoSelect.value].qualities[qualitySelect.value].original;
@@ -191,7 +196,7 @@ const resetStates = () => {
 
     // reset frame states
     CURRENT_FRAME = FRAME_START;
-    DURATION = videoSelect.value === "motorbike" ? 20.0 : 30.0;
+    DURATION = DURATIONS [videoSelect.value];
 }
 
 const pauseAll = () => {
@@ -314,8 +319,8 @@ mute.addEventListener('click', () => {
 });
 
 previous.addEventListener('click', () => {
-    CURRENT_FRAME = Math.round((CURRENT_FRAME - FRAME_INCREMENT) * 10) / 10;
-    if (CURRENT_FRAME < 1) {
+    CURRENT_FRAME--;
+    if (CURRENT_FRAME === 1) {
         previous.disabled = true;
     }
     next.disabled = false;
@@ -323,8 +328,8 @@ previous.addEventListener('click', () => {
 });
 
 next.addEventListener('click', () => {
-    CURRENT_FRAME = Math.round((CURRENT_FRAME + FRAME_INCREMENT) * 10) / 10;
-    if (CURRENT_FRAME > DURATION - 1) {
+    CURRENT_FRAME++;
+    if (CURRENT_FRAME === DURATION) {
         next.disabled = true;
     }
     previous.disabled = false;
