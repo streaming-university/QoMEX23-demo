@@ -1,5 +1,6 @@
 const video1 = document.getElementById('video1');
 const video2 = document.getElementById('video2');
+const videoResolution = document.getElementById('video-resolution');
 const video2Label = document.getElementById('video2-text');
 const startBtn = document.getElementById('start-stop-btn');
 const reset = document.getElementById('restart-btn');
@@ -14,10 +15,12 @@ const frame2 = document.getElementById('frame2');
 const previous = document.getElementById('previous-btn');
 const next = document.getElementById('next-btn');
 const frame2Label = document.getElementById('frame2-text');
+const seekBar = document.querySelector("#custom-seekbar span");
 
 // Video links
 const VIDEOS = {
     "bbb": {
+        resolution: "3840 x 2160 (4K)",
         qualities: {
             20: {
                 //https://drive.google.com/file/d/1glgLM4dVw7O0ls3QI8R-CL69whL8HjLl/view?usp=share_link
@@ -44,6 +47,7 @@ const VIDEOS = {
         }
     },
     "no-event": {
+        resolution: "720 x 576",
         qualities: {
             20: {
                 //https://drive.google.com/file/d/19cG8frcsRyzNzSobVJ1aGXlOEwpt8FN7/view?usp=share_link
@@ -70,6 +74,7 @@ const VIDEOS = {
         }
     },
     "motorbike": {
+        resolution: "1920 x 1080",
         qualities: {
             20: {
                 //https://drive.google.com/file/d/1_mu1-BS810uLxzuZrK67d1AQdWM-iVbg/view?usp=share_link
@@ -172,6 +177,8 @@ video1.src = VIDEOS[videoSelect.value].qualities[qualitySelect.value].spliced;
 video2.src = VIDEOS[videoSelect.value].qualities[qualitySelect.value].original;
 video2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelect.value})`;
 
+videoResolution.innerText = `Resolution: 3840 x 2160 (4K)`;
+
 frame1.src = `${FRAMES[videoSelect.value].qualities[qualitySelect.value].spliced}/${CURRENT_FRAME}.png`;
 frame2.src = `${FRAMES[videoSelect.value].qualities[qualitySelect.value].original}/${CURRENT_FRAME}.png`;
 frame2Label.textContent = `Reference Video: Unspliced Version (QP ${qualitySelect.value})`;
@@ -193,6 +200,7 @@ const resetStates = () => {
 
     loadingText1.style.display = 'auto';
     loadingText2.style.display = 'auto';
+    seekBar.style.width = "0%";
 
     // reset frame states
     CURRENT_FRAME = FRAME_START;
@@ -208,6 +216,7 @@ const pauseAll = () => {
 const updateVideo = () => {
     video1.src = VIDEOS[videoSelect.value].qualities[qualitySelect.value].spliced;
     video2.src = VIDEOS[videoSelect.value].qualities[qualitySelect.value].original;
+    videoResolution.innerText = `Resolution: ${VIDEOS[videoSelect.value].resolution}`;
 }
 
 const updateFrame = (frame) => {
@@ -338,5 +347,5 @@ next.addEventListener('click', () => {
 
 video1.ontimeupdate = function(){
     const percentage = ( video1.currentTime / video1.duration ) * 100;
-    document.querySelector("#custom-seekbar span").style.width = percentage+"%";
+    seekBar.style.width = percentage+"%";
 };
