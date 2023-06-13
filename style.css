@@ -47,13 +47,31 @@ html, body {
     margin: 0 10px;
 }
 
+#custom-seekbar {
+    height: 10px;
+    outline: thin solid orange;
+    overflow: hidden;
+    position: relative;
+    width: 400px;
+    border-radius: 16px;
+}
+
+#custom-seekbar span {
+    background-color: orange;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 10px;
+    width: 0;
+    border-radius: 16px;
+}
+
 #video-control-panel {
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
     flex-wrap: wrap;
-    margin: 32px 0;
 }
 
 #video-control-panel > div > button {
@@ -86,6 +104,39 @@ html, body {
     margin: 16px 28px 32px;
 }
 
+.results-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin-bottom: 24px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #e7e7e7;
+    color: #212529;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+tr:hover {
+    background-color: rgba(255, 193, 7, 0.6);
+}
+
 footer {
     position: absolute;
     bottom: 0;
@@ -99,46 +150,4 @@ footer {
 
 footer > p {
     margin: 0;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-    border: 1px solid #ddd;
-    margin-bottom: 24px;
-}
-
-th, td {
-    padding: 10px;
-    text-align: center;
-}
-
-th {
-    background-color: #e7e7e7;
-    font-weight: bold;
-}
-
-tr:nth-child(even) {
-    background-color: #f0f0f0;
-}
-
-#custom-seekbar {
-    height: 10px;
-    margin-bottom: 10px;
-    outline: thin solid orange;
-    overflow: hidden;
-    position: relative;
-    width: 400px;
-    border-radius: 16px;
-}
-
-#custom-seekbar span {
-    background-color: orange;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 10px;
-    width: 0;
-    border-radius: 16px;
 }
