@@ -345,7 +345,7 @@ next.addEventListener('click', () => {
     updateFrame(CURRENT_FRAME);
 });
 
-video1.ontimeupdate = function(){
+video1.ontimeupdate = () =>{
     const percentage = ( video1.currentTime / video1.duration ) * 100;
     seekBar.style.width = percentage+"%";
 };

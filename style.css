@@ -104,6 +104,13 @@ html, body {
     margin: 16px 28px 32px;
 }
 
+.results-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -127,8 +134,7 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-    background-color: rgba(33, 37, 41, 0.6);
-    color: #f0f0f0;
+    background-color: rgba(255, 193, 7, 0.6);
 }
 
 footer {
